@@ -1,17 +1,12 @@
 # loan-portfolio-risk-analysis
 End-to-end loan portfolio analysis of 2,500 loans (2013-2018) using Excel, MySQL, Python and Power BI: default risk, approval trends and a 3-page interactive dashboard.
-# Loan Portfolio Risk & Approval Analysis
-
-End-to-end analysis of a 2,500-loan personal lending portfolio (2013–2018) using **Excel, MySQL, Python and Power BI**. The project covers data cleaning, SQL analysis, exploratory analysis with feature engineering, and a 3-page interactive dashboard on portfolio performance, loan approval trends and default risk.
 
 ---
 
 ## Table of Contents
 1. [Problem Statement](#problem-statement)
 2. [Project Workflow](#project-workflow)
-3. [Dataset](#dataset)
 4. [Tools & Skills](#tools--skills)
-5. [Repository Structure](#repository-structure)
 6. [Data Cleaning & Feature Engineering (Excel)](#data-cleaning--feature-engineering-excel)
 7. [SQL Analysis](#sql-analysis)
 8. [Python Analysis](#python-analysis)
@@ -52,52 +47,6 @@ Excel (raw data + cleaning)  ->  MySQL (SQL analysis)  ->  Python (EDA + feature
 
 ---
 
-## Dataset
-
-| Item | Detail |
-|---|---|
-| Loan records | 2,500 loans (`ORIGINAL`: 23 columns, cleaned `loans_fact`: 30 columns) |
-| Issue period | January 2013 – December 2018 |
-| Geography | 50 US states in the loan data; 52 states/territories in the approval data |
-| Total funded | $37,790,150 |
-| Principal repaid | $23,736,717 |
-| Outstanding principal | $10,811,788 |
-| Defaulted (Charged Off) loans | 293 |
-| Loan grades | A to G |
-| Terms | 36 and 60 months |
-
-**Workbook sheets (`loan_project.xlsx`)**
-
-| Sheet | Rows | Content |
-|---|---|---|
-| `ORIGINAL` | 2,500 | Raw loan data |
-| `loans_fact` | 2,500 | Cleaned fact table with engineered columns |
-| `approval_by_state` | 305 | Accepted / rejected applications by year and state |
-| `approval_by_emp_dti` | 360 | Accepted / rejected applications by year, employment length and DTI band |
-| `lk_year_approval` | 6 | Yearly approval rate, calculated with `SUMIFS` |
-| `lk_loan_type` | 14 | Lookup mapping loan type to purpose group |
-| Pivot sheets | – | Loan status, default rate by loan type, credit score band, income band, loans by grade and year |
-
-> **Data source:** *(add the source / licence of your dataset here)*
-
-**Key columns in `loans_fact`**
-
-| Column | Description |
-|---|---|
-| `loan_id`, `issue_date`, `issue_year` | Loan identifier and issue date |
-| `loan_amount`, `term_months`, `interest_rate_pct`, `monthly_installment` | Loan terms |
-| `grade`, `sub_grade` | Lender risk grade |
-| `loan_type`, `loan_type_group` | Loan purpose and grouped purpose |
-| `home_ownership`, `income_verification`, `employment_length`, `employment_years` | Borrower profile |
-| `annual_income`, `debt_to_income_pct`, `credit_score`, `state` | Borrower financials and location |
-| `loan_status`, `loan_status_group` | Original and grouped status |
-| `is_closed_status`, `default_flag` | 1/0 markers used for default analysis |
-| `outstanding_principal`, `principal_repaid` | Repayment position |
-| `credit_score_band`, `debt_to_income_band`, `income_band`, `loan_size_band` | Banded versions for reporting |
-| `issue_year_approval_rate_pct` | Approval rate of the year the loan was issued |
-
----
-
 ## Tools & Skills
 
 | Area | Tools / Techniques |
@@ -106,27 +55,6 @@ Excel (raw data + cleaning)  ->  MySQL (SQL analysis)  ->  Python (EDA + feature
 | SQL (MySQL) | `GROUP BY`, `HAVING`, `JOIN`, `CASE WHEN`, subqueries, aggregates, `ORDER BY`, `LIMIT`, `IN` |
 | Python | pandas, NumPy, Matplotlib, Seaborn, SQLAlchemy, PyMySQL |
 | Power BI | Power Query, data modelling, DAX, slicers, bookmarks, conditional formatting |
-
----
-
-## Repository Structure
-
-```
-loan-portfolio-analysis/
-├── data/
-│   └── loan_project.xlsx
-├── sql/
-│   └── Loan_project_sql_file.sql
-├── notebooks/
-│   └── loan_project.ipynb
-├── powerbi/
-│   └── loan_portfolio_dashboard.pbix
-├── images/
-│   ├── portfolio_page.png
-│   ├── approval_page.png
-│   └── risk_page.png
-└── README.md
-```
 
 ---
 
@@ -155,8 +83,6 @@ Columns added to build `loans_fact`:
 
 ## SQL Analysis
 
-File: [`sql/Loan_project_sql_file.sql`](sql/Loan_project_sql_file.sql) (database `loan_db`, main table `loans_fact`, lookup table `lk_year_approval`)
-
 | # | Business question | Techniques |
 |---|---|---|
 | 1 | Loan status distribution and % of portfolio | `GROUP BY`, subquery |
@@ -174,8 +100,6 @@ Default rate in SQL is calculated as `ROUND(AVG(default_flag) * 100, 2)`, becaus
 
 ## Python Analysis
 
-File: [`notebooks/loan_project.ipynb`](notebooks/loan_project.ipynb)
-
 1. **Connect** to MySQL with SQLAlchemy (`mysql+pymysql`) and load `loans_fact` and `lk_year_approval` into pandas.
 2. **Data quality checks:** shape, data types, duplicate loan IDs (assertion), `describe()`.
 3. **Visualisation:** loan amount distribution, loans by status, default rate by grade, default rate by year.
@@ -191,10 +115,6 @@ File: [`notebooks/loan_project.ipynb`](notebooks/loan_project.ipynb)
 ---
 
 ## Power BI Dashboard
-
-File: `powerbi/loan_portfolio_dashboard.pbix`
-
-**Data model:** fact table `loans_facts`; lookup `lk_loantype`; dimension tables `Dim_Year` and `Dim_State` (created with DAX); approval tables `approval_by_state` and `approval_by_emp_dti`. All measures are stored in a dedicated measures table (28 DAX measures).
 
 **Page 1: Portfolio** – *What do we lend and how is it repaid?*
 - KPI cards: Loans Funded, Funded Amount, Avg Loan Amount, Outstanding Principal, Repayment %, Weighted Avg Interest Rate %
@@ -232,7 +152,10 @@ Every page has Year and State slicers, a reset button, and a dynamic insight car
 ### Screenshots
 | Portfolio | Approval | Risk |
 |---|---|---|
-| ![Portfolio](images/portfolio_page.png) | ![Approval](images/approval_page.png) | ![Risk](images/risk_page.png) |
+| ![Approval](<img width="719" height="407" alt="image" src="https://github.com/user-attachments/assets/765fc29d-689a-41a7-996c-4c17b366131c" />
+) |![Portfolio](<img width="715" height="401" alt="image" src="https://github.com/user-attachments/assets/4584e1c2-07a1-499b-acba-356a5e8fa727" />
+) | ![Risk](<img width="719" height="401" alt="image" src="https://github.com/user-attachments/assets/4e3fe1d8-1c86-4fda-a26a-4973158e925d" />
+) |
 
 ---
 
