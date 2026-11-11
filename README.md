@@ -110,8 +110,6 @@ Default rate in SQL is calculated as `ROUND(AVG(default_flag) * 100, 2)`, becaus
 6. **Vintage analysis:** default rate by issue year using resolved loans only (Fully Paid and Charged Off).
 7. **Export** of results back to MySQL (`loan_python_features`, `grade_summary`, `vintage_summary`) and to CSV files.
 
-> Before running, replace the database credentials in the connection cell with your own (use environment variables, never commit real passwords).
-
 ---
 
 ## Power BI Dashboard
