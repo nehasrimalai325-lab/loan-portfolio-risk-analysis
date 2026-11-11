@@ -151,8 +151,9 @@ Every page has Year and State slicers, a reset button, and a dynamic insight car
 
 ### Screenshots
 | Portfolio | Approval | Risk |
-|---|---|---|
-| ![Approval](<img width="719" height="407" alt="image" src="https://github.com/user-attachments/assets/765fc29d-689a-41a7-996c-4c17b366131c" />) |![Portfolio](<img width="715" height="401" alt="image" src="https://github.com/user-attachments/assets/4584e1c2-07a1-499b-acba-356a5e8fa727" />) | ![Risk](<img width="719" height="401" alt="image" src="https://github.com/user-attachments/assets/4e3fe1d8-1c86-4fda-a26a-4973158e925d" />) |
+-- <img width="719" height="407" alt="image" src="https://github.com/user-attachments/assets/765fc29d-689a-41a7-996c-4c17b366131c" />
+-- <img width="715" height="401" alt="image" src="https://github.com/user-attachments/assets/4584e1c2-07a1-499b-acba-356a5e8fa727" />
+-- <img width="719" height="401" alt="image" src="https://github.com/user-attachments/assets/4e3fe1d8-1c86-4fda-a26a-4973158e925d" />
 
 ---
 
